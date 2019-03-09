@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { withRouter } from 'react-router-dom';
-import { Button, Container, Row, Col, Card, CardBody, MDBTable, MDBTableBody, MDBTableHead, TableHead } from 'mdbreact';
+import { Button, Container, Row, Col, Card, MDBTable, MDBTableBody } from 'mdbreact';
 
 class LinkedInPage extends Component {
     state = {
@@ -48,13 +48,13 @@ class LinkedInPage extends Component {
 
     render() {
         return (
-            <Container className="mt-3">
+            <Container className="mt-0">
                 <Row>
                     <Col className="col-6 text-center">
-                        <Button className="my-5 main-color-background btn-lg" onClick={this.fetchProfileData}>Load career data</Button>
+                        <Button className="my-4 main-color-background btn-lg" onClick={this.fetchProfileData}>Load career data</Button>
                         <Card>
                             {this.state.readyForRecommendation &&
-                                <MDBTable hover>
+                                <MDBTable hover className="mb-0">
                                     <MDBTableBody>
                                         <tr>
                                             <td>Name</td>
@@ -82,19 +82,43 @@ class LinkedInPage extends Component {
                                         <td>Major masters</td>
                                         <td>Computer Science</td>
                                     </tr>
+                                    <tr>
+                                        <td>Volunteer</td>
+                                        <td>TEDx Kazimierz Krakow</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Skil 1</td>
+                                        <td>Java programming</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Skill 2</td>
+                                        <td>Machine Learning</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Skill 3</td>
+                                        <td>Irritating peopole</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hobby 1</td>
+                                        <td>Doing math</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hobby 1</td>
+                                        <td>Accounting</td>
+                                    </tr>
                                     </MDBTableBody>
                                 </MDBTable>
                             }
                         </Card>
                     </Col>
                     <Col className="col-6 text-center">
-                        {<Button disabled={!this.state.readyForRecommendation} className="my-5 main-color-background btn-lg" onClick={this.fetchRecommendations}>Get personalized jobs</Button>}
+                        {<Button disabled={!this.state.readyForRecommendation} className="my-4 main-color-background btn-lg" onClick={this.fetchRecommendations}>Get personalized jobs</Button>}
                         <div>
 
                         </div>
                         <Card>
                             {this.state.showRecommendations &&
-                                <MDBTable hover>
+                                <MDBTable hover className="mb-0">
                                     <MDBTableBody>
                                         <tr>
                                             <td>Position</td>

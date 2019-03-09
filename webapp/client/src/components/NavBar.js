@@ -29,10 +29,10 @@ class NavBar extends Component {
                 <Collapse isOpen={this.state.collapse} navbar>
                     <NavbarNav right>
                         <NavItem className="mr-2 ml-1">
-                            <NavLink to="/">Find a job</NavLink>
+                            <NavLink to="/"><i class="fas fa-search"></i> Find a job</NavLink>
                         </NavItem>
                         <NavItem className="mr-2 ml-1">
-                            <NavLink to="/">Settings</NavLink>
+                            <NavLink to="/"><i class="fas fa-user"></i> Settings</NavLink>
                         </NavItem>
                     </NavbarNav>
                 </Collapse>
