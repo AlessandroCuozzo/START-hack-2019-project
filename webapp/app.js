@@ -56,7 +56,7 @@ app.use('/api', router);
 //   });
 // });
 
-app.get('/fetchData', function(req, res) {
+app.get('/fetchProfileData', function(req, res) {
   var token = req.query.token;
   var linkedin = Linkedin.init(token);
   linkedin.people.me(function(err, $in) {

@@ -5,23 +5,26 @@ import { Button } from 'mdbreact';
 
 class LinkedInPage extends Component {
     state = {
-        code: '',
-        errorMessage: '',
+        userData: {
+            firstName: '',
+            lastName: '',
+            headline:''
+        }
     };
 
     fetchProfileData = async () => {
         const queryUrl = this.props.location.search;
         let token = '';
         if (queryUrl) {
-            token = queryUrl.replace('?token=','')
+            token = queryUrl.replace('?token=', '')
         }
         console.log(token)
 
-    //  const response = await fetch('/oauth/linkedin');
-    //  const body = await response.json();
+        const response = await fetch('/fetchProfileData?token=' + token);
+        const body = await response.json();
 
-  
-//    return body;
+        this.setState({userData: body})
+        return body;
 
     }
 
@@ -29,6 +32,7 @@ class LinkedInPage extends Component {
         return (
             <div>
                 <Button onClick={this.fetchProfileData}>Get Profile</Button>
+                <div>My name is: {this.state.userData.firstName}</div>
             </div>
         );
     }
