@@ -6,7 +6,7 @@ module.exports = {
     var options = {
       mode: 'text',
       // make sure this is your local path to Python
-      pythonPath: 'C:/Users/DQFR7751/AppData/Local/Programs/Python/Python37-32/python',  
+      pythonPath: '/usr/local/bin/python',  
       pythonOptions: ['-u'],
       scriptPath: process.cwd() + '/server/controllers/python',
       args: ['argument1']

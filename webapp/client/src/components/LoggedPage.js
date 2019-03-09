@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 
 import { withRouter } from 'react-router-dom';
-import { Button } from 'mdbreact';
+import { Button, Container, Row, Col, Card, CardBody, MDBTable, MDBTableBody, MDBTableHead, TableHead } from 'mdbreact';
 
 class LinkedInPage extends Component {
     state = {
         userData: {
-            firstName: '',
+            formattedName: '',
             lastName: '',
-            headline: ''
+            headline: '',
+            industry: '',
+            pictureUrl: '',
+            positions: {
+                values: []
+            }
         },
-        readyForRecommendation: true
+        readyForRecommendation: false
     };
 
     fetchProfileData = async () => {
@@ -35,27 +40,44 @@ class LinkedInPage extends Component {
 
         //remove in production, just log error
         if (response.status !== 200) throw Error(body.message);
-        this.setState({ userRecommend: body})
+        this.setState({ userRecommend: body })
 
         return body;
     };
 
     render() {
         return (
-            <div>
-                <Button color="green" onClick={this.fetchProfileData}>Load career data</Button>
-                {this.state.readyForRecommendation && <Button color="green" onClick={this.fetchRecommendations}>Get personalized jobs</Button> } 
-				
-				<div> 
-				
-				{
-				this.state.userRecommend&&
-				this.state.userRecommend.map(r => <div> {r} </div>)
-				}
-				</div>
-                <div>My name is: {this.state.userData.firstName}</div>
-
-            </div>
+            <Container className="mt-3">
+                <Row>
+                    <Col className="col-6 text-center">
+                        <Button className="my-5 main-color-background btn-lg" onClick={this.fetchProfileData}>Load career data</Button>
+                        <Card>
+                            <MDBTable hover>
+                                <MDBTableBody>
+                                    <tr>
+                                        <td>Name</td>
+                                        <td>{this.state.userData.formattedName}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Industry</td>
+                                        <td>{this.state.userData.industry}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Location</td>
+                                        <td>{this.state.userData.location && this.state.userData.location.name}</td>
+                                    </tr>
+                                </MDBTableBody>
+                            </MDBTable>
+                        </Card>
+                    </Col>
+                    <Col className="col-6 text-center">
+                        {<Button disabled={!this.state.readyForRecommendation} className="my-5 main-color-background btn-lg" onClick={this.fetchRecommendations}>Get personalized jobs</Button>}
+                        <div>
+                            {this.state.userRecommend && this.state.userRecommend.map(r => <div> {r} </div>)}
+                        </div>
+                    </Col>
+                </Row>
+            </Container>
         );
     }
 }
