@@ -5,7 +5,7 @@ import pandas as pd
 def main(): 
 
 	# Load jobs Metadata
-	metadata = pd.read_csv('./jobList.csv', low_memory=False)
+	metadata = pd.read_csv('./server/controllers/python/jobList.csv', low_memory=False)
 	#Import TfIdfVectorizer from scikit-learn
 	print("first line")
 

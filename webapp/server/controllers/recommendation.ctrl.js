@@ -14,7 +14,7 @@ module.exports = {
 
     console.log("mydir: " + process.cwd());
 
-    PythonShell.run('hello.py', options, function (err, result) {
+    PythonShell.run('Main.py', options, function (err, result) {
 		console.log("here? ")
       if (err) {
 		console.log(err)

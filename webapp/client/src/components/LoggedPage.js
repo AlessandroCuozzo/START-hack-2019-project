@@ -35,6 +35,7 @@ class LinkedInPage extends Component {
 
         //remove in production, just log error
         if (response.status !== 200) throw Error(body.message);
+        this.setState({ userRecommend: body})
 
         return body;
     };
@@ -43,7 +44,15 @@ class LinkedInPage extends Component {
         return (
             <div>
                 <Button color="green" onClick={this.fetchProfileData}>Load career data</Button>
-                {this.state.readyForRecommendation && <Button color="green" onClick={this.fetchRecommendations}>Get personalized jobs</Button>}
+                {this.state.readyForRecommendation && <Button color="green" onClick={this.fetchRecommendations}>Get personalized jobs</Button> } 
+				
+				<div> 
+				
+				{
+				this.state.userRecommend&&
+				this.state.userRecommend.map(r => <div> {r} </div>)
+				}
+				</div>
                 <div>My name is: {this.state.userData.firstName}</div>
 
             </div>
