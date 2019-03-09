@@ -8,8 +8,9 @@ class LinkedInPage extends Component {
         userData: {
             firstName: '',
             lastName: '',
-            headline:''
-        }
+            headline: ''
+        },
+        readyForRecommendation: true
     };
 
     fetchProfileData = async () => {
@@ -23,16 +24,28 @@ class LinkedInPage extends Component {
         const response = await fetch('/fetchProfileData?token=' + token);
         const body = await response.json();
 
-        this.setState({userData: body})
+        this.setState({ userData: body, readyForRecommendation: true })
         return body;
-
     }
+
+
+    fetchRecommendations = async () => {
+        const response = await fetch('/api/recommendations');
+        const body = await response.json();
+
+        //remove in production, just log error
+        if (response.status !== 200) throw Error(body.message);
+
+        return body;
+    };
 
     render() {
         return (
             <div>
-                <Button onClick={this.fetchProfileData}>Get Profile</Button>
+                <Button color="green" onClick={this.fetchProfileData}>Load career data</Button>
+                {this.state.readyForRecommendation && <Button color="green" onClick={this.fetchRecommendations}>Get personalized jobs</Button>}
                 <div>My name is: {this.state.userData.firstName}</div>
+
             </div>
         );
     }
