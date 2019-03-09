@@ -1,5 +1,7 @@
-const multipart = require('connect-multiparty');
-const multipartWare = multipart();
+const recommendationController = require('../controllers/recommendation.ctrl');
+
 module.exports = (router) => {
- 
+    router
+    .route('/recommendations')
+    .get(recommendationController.getRecommendations);
 };

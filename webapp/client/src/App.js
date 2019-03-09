@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import NavBar from './components/NavBar';
 
 class App extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class App extends Component {
       <div className="App">
         <Router>
           <div>
+            <NavBar />
             <div>
               <Switch>
                 <Route exact path="/" render={(props) => <div>something</div>} />
