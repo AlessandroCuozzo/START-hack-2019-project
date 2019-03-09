@@ -17,6 +17,7 @@ module.exports = {
     PythonShell.run('hello.py', options, function (err, result) {
 		console.log("here? ")
       if (err) {
+		console.log(err)
         res.status(500).send({"Error": "Error with python"})
       } else {
         console.log('finished: ' + result);
