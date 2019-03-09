@@ -1,0 +1,23 @@
+{
+  "name": "start-hack-app",
+  "version": "0.1.0",
+  "scripts": {
+    "client": "cd client && yarn start",
+    "server": "nodemon --inspect app.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.3",
+    "connect-multiparty": "^2.1.1",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "helmet": "^3.13.0",
+    "mongoose": "^5.4.8",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.0"
+  }
+}
