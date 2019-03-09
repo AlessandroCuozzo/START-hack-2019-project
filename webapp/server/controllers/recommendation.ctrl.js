@@ -14,7 +14,7 @@ module.exports = {
 
     console.log("mydir: " + process.cwd());
 
-    PythonShell.run('JobRecommender.py', options, function (err, result) {
+    PythonShell.run('hello.py', options, function (err, result) {
 		console.log("here? ")
       if (err) {
         res.status(500).send({"Error": "Error with python"})
