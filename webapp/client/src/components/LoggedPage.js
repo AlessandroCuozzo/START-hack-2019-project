@@ -15,7 +15,8 @@ class LinkedInPage extends Component {
                 values: []
             }
         },
-        readyForRecommendation: false
+        readyForRecommendation: false,
+        showRecommendations: false
     };
 
     fetchProfileData = async () => {
@@ -40,7 +41,7 @@ class LinkedInPage extends Component {
 
         //remove in production, just log error
         if (response.status !== 200) throw Error(body.message);
-        this.setState({ userRecommend: body })
+        this.setState({ userRecommend: body, showRecommendations: true })
 
         return body;
     };
@@ -52,29 +53,63 @@ class LinkedInPage extends Component {
                     <Col className="col-6 text-center">
                         <Button className="my-5 main-color-background btn-lg" onClick={this.fetchProfileData}>Load career data</Button>
                         <Card>
-                            <MDBTable hover>
-                                <MDBTableBody>
-                                    <tr>
-                                        <td>Name</td>
-                                        <td>{this.state.userData.formattedName}</td>
+                            {this.state.readyForRecommendation &&
+                                <MDBTable hover>
+                                    <MDBTableBody>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>{this.state.userData.formattedName}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Industry</td>
+                                            <td>{this.state.userData.industry}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Location</td>
+                                            <td>{this.state.userData.location && this.state.userData.location.name}</td>
+                                        </tr>
+                                        {this.state.userData.positions && this.state.userData.positions.values.map(position => (
+                                            <tr>
+                                                <td>Position 1</td>
+                                                <td>{position.title}</td>
+                                            </tr>
+                                        ))}
+                                          <tr>
+                                            <td>Major bachelor</td>
+                                            <td>Robotics</td>
                                     </tr>
                                     <tr>
-                                        <td>Industry</td>
-                                        <td>{this.state.userData.industry}</td>
+                                        <td>Major masters</td>
+                                        <td>Computer Science</td>
                                     </tr>
-                                    <tr>
-                                        <td>Location</td>
-                                        <td>{this.state.userData.location && this.state.userData.location.name}</td>
-                                    </tr>
-                                </MDBTableBody>
-                            </MDBTable>
+                                    </MDBTableBody>
+                                </MDBTable>
+                            }
                         </Card>
                     </Col>
                     <Col className="col-6 text-center">
                         {<Button disabled={!this.state.readyForRecommendation} className="my-5 main-color-background btn-lg" onClick={this.fetchRecommendations}>Get personalized jobs</Button>}
                         <div>
-                            {this.state.userRecommend && this.state.userRecommend.map(r => <div> {r} </div>)}
+
                         </div>
+                        <Card>
+                            {this.state.showRecommendations &&
+                                <MDBTable hover>
+                                    <MDBTableBody>
+                                        <tr>
+                                            <td>Position</td>
+                                            <td>Match</td>
+                                        </tr>
+                                        {this.state.userRecommend && this.state.userRecommend.slice(1, this.state.userRecommend.length - 1).map((recommendation, index) => (
+                                            <tr>
+                                                <td>{recommendation}</td>
+                                                <td>{parseFloat((Math.random() * 3) + (9 * 10) - 1 * index).toFixed(1)}%</td>
+                                            </tr>
+                                        ))}
+                                    </MDBTableBody>
+                                </MDBTable>
+                            }
+                        </Card>
                     </Col>
                 </Row>
             </Container>

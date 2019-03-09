@@ -19,12 +19,12 @@ class App extends Component {
         <Router>
           <div>
             <NavBar />
-            <div className="d-flex justify-content-center my-4">
+            <div className="d-flex justify-content-center my-5">
              
               <Switch>
                 <Route exact path="/" render={(props) => <div>
                   <a href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=779tep39zy800c&redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fauth&state=987654321&scope=r_basicprofile">
-                <Button color="green" >Login with LinkedIn</Button>
+                <Button className="main-color-background btn-lg mt-4">Login with LinkedIn</Button>
               </a>
                 </div>} />
                 <Route exact path="/logged" render={(props) =>  <LoggedPage />} />
