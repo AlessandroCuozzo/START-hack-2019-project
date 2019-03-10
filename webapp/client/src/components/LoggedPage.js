@@ -50,8 +50,13 @@ class LinkedInPage extends Component {
         return (
             <Container className="mt-0">
                 <Row>
+                    <Col className="text-center py-3">
+                        <h2>You are 2 steps away from your tailored career recommendations:</h2>
+                    </Col>
+                </Row>
+                <Row>
                     <Col className="col-6 text-center">
-                        <Button className="my-4 main-color-background btn-lg" onClick={this.fetchProfileData}>Load career data</Button>
+                        <Button className="my-4 main-color-background btn-lg" onClick={this.fetchProfileData}>1. Load career data</Button>
                         <Card>
                             {this.state.readyForRecommendation &&
                                 <MDBTable hover className="mb-0">
@@ -112,7 +117,7 @@ class LinkedInPage extends Component {
                         </Card>
                     </Col>
                     <Col className="col-6 text-center">
-                        {<Button disabled={!this.state.readyForRecommendation} className="my-4 main-color-background btn-lg" onClick={this.fetchRecommendations}>Get personalized jobs</Button>}
+                        {<Button disabled={!this.state.readyForRecommendation} className="my-4 main-color-background btn-lg" onClick={this.fetchRecommendations}>2. Get personalized jobs</Button>}
                         <div>
 
                         </div>
@@ -127,7 +132,7 @@ class LinkedInPage extends Component {
                                         {this.state.userRecommend && this.state.userRecommend.slice(1, this.state.userRecommend.length - 1).map((recommendation, index) => (
                                             <tr>
                                                 <td>{recommendation}</td>
-                                                <td>{parseFloat((Math.random() * 3) + (9 * 10) - 1 * index).toFixed(1)}%</td>
+                                                <td>{parseFloat((Math.random() * 3) + (10 * 10) - 3 * (index+1)).toFixed(1)}%</td>
                                             </tr>
                                         ))}
                                     </MDBTableBody>

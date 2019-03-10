@@ -25,6 +25,7 @@ class NavBar extends Component {
                             className="d-inline-block align-top" />
                     </MDBNavLink>
                 </MDBNavbarBrand>
+                <NavLink to="/"><h4 className="pt-2 text-white">JobDisco</h4></NavLink>
                 {!this.state.isNavbarWideEnough && <NavbarToggler onClick={this.onToggleClick} />}
                 <Collapse isOpen={this.state.collapse} navbar>
                     <NavbarNav right>
